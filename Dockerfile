@@ -5,7 +5,7 @@ ADD . /generator-microservices-q
 
 WORKDIR generator-microservices-q
 
-RUN mvn compile package
+RUN mvn -U compile package
 
 # Run it
 FROM openjdk:11
