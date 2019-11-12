@@ -8,7 +8,7 @@ public class DateResource
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd@HH:mm:ss.SSSZ")
 	private java.util.Date value;
 
-	protected DateResource(java.util.Date value)
+	public DateResource(java.util.Date value)
 	{
 		super();
 		this.value=value;
