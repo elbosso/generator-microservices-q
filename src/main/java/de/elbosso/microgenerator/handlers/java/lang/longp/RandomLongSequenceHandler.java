@@ -48,7 +48,9 @@ import java.io.OutputStream;
 //https://www.logicbig.com/tutorials/java-ee-tutorial/jax-rs/using-query-param.html
 //https://antoniogoncalves.org/2019/06/07/configuring-a-quarkus-application/
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:00:53.638Z")
+
+
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:52:12.3Z")
 @Path("/randomLong")
 public class RandomLongSequenceHandler
 {
@@ -57,7 +59,8 @@ public class RandomLongSequenceHandler
     //java.lang.Long
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response get() {
+    public Response get()
+    {
         return Response.ok(new de.elbosso.microgenerator.number.NumberResource(generator.next())).build();
     }
 /*

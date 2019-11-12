@@ -48,7 +48,9 @@ import java.io.OutputStream;
 //https://www.logicbig.com/tutorials/java-ee-tutorial/jax-rs/using-query-param.html
 //https://antoniogoncalves.org/2019/06/07/configuring-a-quarkus-application/
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:00:53.353Z")
+
+
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:52:11.668Z")
 @Path("/doubleIncrement")
 public class DoubleIncrementSequenceHandler
 {
@@ -57,7 +59,19 @@ public class DoubleIncrementSequenceHandler
     //java.lang.Double
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response get() {
+    public Response get(    @DefaultValue("1.0")
+    @QueryParam("Increment")
+    double Increment,
+    @DefaultValue("java.lang.Double.MAX_VALUE")
+    @QueryParam("StartValue")
+    double StartValue,
+    @DefaultValue("false")
+    @QueryParam("Repeat")
+    boolean Repeat)
+    {
+        generator.setIncrement(Increment);
+        generator.setStartValue(StartValue);
+        generator.setRepeat(Repeat);
         return Response.ok(new de.elbosso.microgenerator.number.NumberResource(generator.next())).build();
     }
 /*

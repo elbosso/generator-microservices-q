@@ -48,7 +48,9 @@ import java.io.OutputStream;
 //https://www.logicbig.com/tutorials/java-ee-tutorial/jax-rs/using-query-param.html
 //https://antoniogoncalves.org/2019/06/07/configuring-a-quarkus-application/
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:00:52.543Z")
+
+
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:52:10.723Z")
 @Path("/oneDimensionalPerlinNoise")
 public class OneDimensionalPerlinNoiseHandler
 {
@@ -57,7 +59,19 @@ public class OneDimensionalPerlinNoiseHandler
     //java.lang.Number
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response get() {
+    public Response get(    @DefaultValue("-1.0")
+    @QueryParam("Min")
+    double Min,
+    @DefaultValue("1.0")
+    @QueryParam("Max")
+    double Max,
+    @DefaultValue("1.0")
+    @QueryParam("Frequency")
+    double Frequency)
+    {
+        generator.setMin(Min);
+        generator.setMax(Max);
+        generator.setFrequency(Frequency);
         return Response.ok(new de.elbosso.microgenerator.number.NumberResource(generator.next())).build();
     }
 /*

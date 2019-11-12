@@ -48,7 +48,9 @@ import java.io.OutputStream;
 //https://www.logicbig.com/tutorials/java-ee-tutorial/jax-rs/using-query-param.html
 //https://antoniogoncalves.org/2019/06/07/configuring-a-quarkus-application/
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:00:53.313Z")
+
+
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:52:11.614Z")
 @Path("/dateIncrement")
 public class DateIncrementSequenceHandler
 {
@@ -57,7 +59,11 @@ public class DateIncrementSequenceHandler
     //java.util.Date
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response get() {
+    public Response get(    @DefaultValue("60000l")
+    @QueryParam("Increment")
+    long Increment)
+    {
+        generator.setIncrement(Increment);
         return Response.ok(new de.elbosso.microgenerator.date.DateResource(generator.next())).build();
     }
 /*

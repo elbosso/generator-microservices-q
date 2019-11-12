@@ -48,7 +48,9 @@ import java.io.OutputStream;
 //https://www.logicbig.com/tutorials/java-ee-tutorial/jax-rs/using-query-param.html
 //https://antoniogoncalves.org/2019/06/07/configuring-a-quarkus-application/
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:00:52.691Z")
+
+
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:52:10.869Z")
 @Path("/avatarImg")
 public class AvatarIconImageSequenceHandler
 {
@@ -57,7 +59,11 @@ public class AvatarIconImageSequenceHandler
     //java.awt.image.BufferedImage
     @GET
     @Produces("image/png")
-    public StreamingOutput get() {
+    public StreamingOutput get(    @DefaultValue("48")
+    @QueryParam("DimensionWidth")
+    int DimensionWidth)
+    {
+        generator.setDimensionWidth(DimensionWidth);
         StreamingOutput rv= new StreamingOutput() {
             @Override
             public void write(OutputStream output)

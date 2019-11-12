@@ -48,7 +48,9 @@ import java.io.OutputStream;
 //https://www.logicbig.com/tutorials/java-ee-tutorial/jax-rs/using-query-param.html
 //https://antoniogoncalves.org/2019/06/07/configuring-a-quarkus-application/
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:00:53.730Z")
+
+
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:52:12.134Z")
 @Path("/phoneNumber")
 public class PhoneNumberSequenceHandler
 {
@@ -57,7 +59,15 @@ public class PhoneNumberSequenceHandler
     //java.lang.String
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response get() {
+    public Response get(    @DefaultValue("false")
+    @QueryParam("IncludeCell")
+    boolean IncludeCell,
+    @DefaultValue("/")
+    @QueryParam("Separator")
+    String Separator)
+    {
+        generator.setIncludeCell(IncludeCell);
+        generator.setSeparator(Separator);
         return Response.ok(new de.elbosso.microgenerator.string.StringResource(generator.next())).build();
     }
 /*

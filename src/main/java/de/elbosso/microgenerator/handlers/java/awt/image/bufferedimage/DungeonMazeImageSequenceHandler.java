@@ -48,7 +48,9 @@ import java.io.OutputStream;
 //https://www.logicbig.com/tutorials/java-ee-tutorial/jax-rs/using-query-param.html
 //https://antoniogoncalves.org/2019/06/07/configuring-a-quarkus-application/
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:00:52.801Z")
+
+
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:52:10.996Z")
 @Path("/dungeonMazeImg")
 public class DungeonMazeImageSequenceHandler
 {
@@ -57,7 +59,23 @@ public class DungeonMazeImageSequenceHandler
     //java.awt.image.BufferedImage
     @GET
     @Produces("image/png")
-    public StreamingOutput get() {
+    public StreamingOutput get(    @DefaultValue("20")
+    @QueryParam("HeightMue")
+    int HeightMue,
+    @DefaultValue("8")
+    @QueryParam("WidthSigma")
+    int WidthSigma,
+    @DefaultValue("30")
+    @QueryParam("WidthMue")
+    int WidthMue,
+    @DefaultValue("5")
+    @QueryParam("HeightSigma")
+    int HeightSigma)
+    {
+        generator.setHeightMue(HeightMue);
+        generator.setWidthSigma(WidthSigma);
+        generator.setWidthMue(WidthMue);
+        generator.setHeightSigma(HeightSigma);
         StreamingOutput rv= new StreamingOutput() {
             @Override
             public void write(OutputStream output)

@@ -48,7 +48,9 @@ import java.io.OutputStream;
 //https://www.logicbig.com/tutorials/java-ee-tutorial/jax-rs/using-query-param.html
 //https://antoniogoncalves.org/2019/06/07/configuring-a-quarkus-application/
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:00:52.520Z")
+
+
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:52:10.696Z")
 @Path("/normalOverDayDate")
 public class NormalOverDayDateSequenceHandler
 {
@@ -57,7 +59,15 @@ public class NormalOverDayDateSequenceHandler
     //java.util.Date
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response get() {
+    public Response get(    @DefaultValue("1080")
+    @QueryParam("MueInMinutes")
+    double MueInMinutes,
+    @DefaultValue("180")
+    @QueryParam("SigmaInMinutes")
+    double SigmaInMinutes)
+    {
+        generator.setMueInMinutes(MueInMinutes);
+        generator.setSigmaInMinutes(SigmaInMinutes);
         return Response.ok(new de.elbosso.microgenerator.date.DateResource(generator.next())).build();
     }
 /*

@@ -48,7 +48,9 @@ import java.io.OutputStream;
 //https://www.logicbig.com/tutorials/java-ee-tutorial/jax-rs/using-query-param.html
 //https://antoniogoncalves.org/2019/06/07/configuring-a-quarkus-application/
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:00:52.309Z")
+
+
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:52:10.446Z")
 @Path("/testPatternImg")
 public class ConstantTestPatternImageSequenceHandler
 {
@@ -57,7 +59,15 @@ public class ConstantTestPatternImageSequenceHandler
     //java.awt.image.BufferedImage
     @GET
     @Produces("image/png")
-    public StreamingOutput get() {
+    public StreamingOutput get(    @DefaultValue("256")
+    @QueryParam("Height")
+    int Height,
+    @DefaultValue("320")
+    @QueryParam("Width")
+    int Width)
+    {
+        generator.setHeight(Height);
+        generator.setWidth(Width);
         StreamingOutput rv= new StreamingOutput() {
             @Override
             public void write(OutputStream output)

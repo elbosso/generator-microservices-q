@@ -48,7 +48,9 @@ import java.io.OutputStream;
 //https://www.logicbig.com/tutorials/java-ee-tutorial/jax-rs/using-query-param.html
 //https://antoniogoncalves.org/2019/06/07/configuring-a-quarkus-application/
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:00:52.466Z")
+
+
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:52:10.659Z")
 @Path("/normalDistributedRandom")
 public class NormalDistributedRandomHandler
 {
@@ -57,7 +59,15 @@ public class NormalDistributedRandomHandler
     //java.lang.Number
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response get() {
+    public Response get(    @DefaultValue("0.0")
+    @QueryParam("Mue")
+    double Mue,
+    @DefaultValue("0.5")
+    @QueryParam("WantedSigma")
+    double WantedSigma)
+    {
+        generator.setMue(Mue);
+        generator.setWantedSigma(WantedSigma);
         return Response.ok(new de.elbosso.microgenerator.number.NumberResource(generator.next())).build();
     }
 /*
