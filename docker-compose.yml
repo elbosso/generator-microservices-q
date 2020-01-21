@@ -11,10 +11,9 @@ services:
 #      - 8080:8080
     restart: always
     labels:
-      - "traefik.backend=generator-microservices-q"
       - "traefik.enable=true"
-      - "traefik.frontend.rule=Host:generator-microservices-q.docker.lab"
-      - "traefik.port=8080"
+      - "traefik.http.routers.generator-microservices-q.rule=Host(`generator-microservices-q.docker.lab`)"
+      - "traefik.http.services.generator-microservices-q.loadbalancer.server.port=8080"
       - "traefik.docker.network=traefik_proxy"
     networks:
       - traefik_proxy
