@@ -4,12 +4,13 @@ services:
   microgenerator-q:
     build:
       context: ./ # Local
+      buildfile: Dockerfile
     #      context: https://github.com/elbosso/generator-microservices-q.git # Build from Github
     container_name: microgenerator-q
     hostname: microgenerator-q
 #    ports:
 #      - 8080:8080
-    restart: always
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.generator-microservices-q.rule=Host(`generator-microservices-q.docker.lab`)"
