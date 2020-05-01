@@ -4,7 +4,7 @@ services:
   microgenerator-q:
     build:
       context: ./ # Local
-      buildfile: Dockerfile
+      dockerfile: Dockerfile
     #      context: https://github.com/elbosso/generator-microservices-q.git # Build from Github
     container_name: microgenerator-q
     hostname: microgenerator-q

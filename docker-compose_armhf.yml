@@ -4,7 +4,7 @@ services:
   pi-microgenerator-q:
     build:
       context: ./ # Local
-      buildfile: Dockerfile_armhf
+      dockerfile: Dockerfile_armhf
     #      context: https://github.com/elbosso/generator-microservices-q.git # Build from Github
     container_name: pi_microgenerator-q
     hostname: pi_microgenerator-q
