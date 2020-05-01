@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  pi-microgenerator-q:
+    build:
+      context: ./ # Local
+      buildfile: Dockerfile_armhf
+    #      context: https://github.com/elbosso/generator-microservices-q.git # Build from Github
+    container_name: pi_microgenerator-q
+    hostname: pi_microgenerator-q
+#    ports:
+#      - 8080:8080
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.generator-microservices-q.rule=Host(`generator-microservices-q.pi-docker.lab`)"
+      - "traefik.http.services.generator-microservices-q.loadbalancer.server.port=8080"
+      - "traefik.docker.network=pi_traefik_proxy"
+    networks:
+      - traefik_proxy
+
+networks:
+  traefik_proxy:
+    external:
+      name: pi_traefik_proxy
+
+
