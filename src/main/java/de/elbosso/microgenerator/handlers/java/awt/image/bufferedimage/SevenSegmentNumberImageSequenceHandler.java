@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2012-2019.
+Copyright (c) 2012-2020.
 
 Juergen Key. Alle Rechte vorbehalten.
 
@@ -50,7 +50,7 @@ import java.io.OutputStream;
 
 
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:52:10.840Z")
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2020-08-29T15:26:42.960Z")
 @Path("/sevenSegmentNumberImg")
 public class SevenSegmentNumberImageSequenceHandler
 {

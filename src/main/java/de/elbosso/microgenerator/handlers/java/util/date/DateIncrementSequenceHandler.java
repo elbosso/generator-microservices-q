@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2012-2019.
+Copyright (c) 2012-2020.
 
 Juergen Key. Alle Rechte vorbehalten.
 
@@ -50,7 +50,7 @@ import java.io.OutputStream;
 
 
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:52:11.614Z")
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2020-08-29T15:26:43.174Z")
 @Path("/dateIncrement")
 public class DateIncrementSequenceHandler
 {
@@ -59,7 +59,7 @@ public class DateIncrementSequenceHandler
     //java.util.Date
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response get(    @DefaultValue("60000l")
+    public Response get(    @DefaultValue("60000")
     @QueryParam("Increment")
     long Increment)
     {

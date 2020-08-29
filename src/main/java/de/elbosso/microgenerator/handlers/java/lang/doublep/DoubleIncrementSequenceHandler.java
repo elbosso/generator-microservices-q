@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2012-2019.
+Copyright (c) 2012-2020.
 
 Juergen Key. Alle Rechte vorbehalten.
 
@@ -50,7 +50,7 @@ import java.io.OutputStream;
 
 
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:52:11.668Z")
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2020-08-29T15:26:43.184Z")
 @Path("/doubleIncrement")
 public class DoubleIncrementSequenceHandler
 {
@@ -62,7 +62,7 @@ public class DoubleIncrementSequenceHandler
     public Response get(    @DefaultValue("1.0")
     @QueryParam("Increment")
     double Increment,
-    @DefaultValue("java.lang.Double.MAX_VALUE")
+    @DefaultValue("1.7976931348623157E300")
     @QueryParam("StartValue")
     double StartValue,
     @DefaultValue("false")

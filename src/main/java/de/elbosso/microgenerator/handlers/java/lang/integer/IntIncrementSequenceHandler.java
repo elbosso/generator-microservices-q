@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2012-2019.
+Copyright (c) 2012-2020.
 
 Juergen Key. Alle Rechte vorbehalten.
 
@@ -50,7 +50,7 @@ import java.io.OutputStream;
 
 
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2019-11-12T18:52:11.771Z")
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2020-08-29T15:26:43.198Z")
 @Path("/intIncrement")
 public class IntIncrementSequenceHandler
 {
@@ -62,7 +62,7 @@ public class IntIncrementSequenceHandler
     public Response get(    @DefaultValue("1")
     @QueryParam("Increment")
     int Increment,
-    @DefaultValue("java.lang.Integer.MAX_VALUE")
+    @DefaultValue("2147483647")
     @QueryParam("StartValue")
     int StartValue,
     @DefaultValue("false")
