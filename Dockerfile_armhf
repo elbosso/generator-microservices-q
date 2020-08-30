@@ -8,7 +8,7 @@ WORKDIR generator-microservices-q
 RUN mvn -U compile package
 
 # Run it
-FROM bellsoft/liberica-openjdk-alpine
+FROM bellsoft/liberica-openjdk-debian
 
 COPY --from=build-env /generator-microservices-q/target/* /app/
 COPY --from=build-env /generator-microservices-q/target/lib/* /app/lib/
