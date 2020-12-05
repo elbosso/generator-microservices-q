@@ -50,7 +50,7 @@ import java.io.OutputStream;
 
 
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2020-08-29T16:01:41.846Z")
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2020-12-05T13:57:11.371Z")
 @Path("/dungeonMazeImg")
 public class DungeonMazeImageSequenceHandler
 {
@@ -70,12 +70,16 @@ public class DungeonMazeImageSequenceHandler
     int WidthMue,
     @DefaultValue("5")
     @QueryParam("HeightSigma")
-    int HeightSigma)
+    int HeightSigma,
+    @DefaultValue("false")
+    @QueryParam("WithRooms")
+    boolean WithRooms)
     {
         generator.setHeightMue(HeightMue);
         generator.setWidthSigma(WidthSigma);
         generator.setWidthMue(WidthMue);
         generator.setHeightSigma(HeightSigma);
+        generator.setWithRooms(WithRooms);
         StreamingOutput rv= new StreamingOutput() {
             @Override
             public void write(OutputStream output)

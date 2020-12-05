@@ -32,66 +32,46 @@ UNERLAUBTE HANDLUNG (INKLUSIVE FAHRLAESSIGKEIT) VERANTWORTLICH, AUF WELCHEM
 WEG SIE AUCH IMMER DURCH DIE BENUTZUNG DIESER SOFTWARE ENTSTANDEN SIND, SOGAR, 
 WENN SIE AUF DIE MOEGLICHKEIT EINES SOLCHEN SCHADENS HINGEWIESEN WORDEN SIND.
 */
-package de.elbosso.microgenerator.handlers.java.util.date;
+package de.elbosso.microgenerator.handlers.java.lang.string;
 
-import javax.ws.rs.*;
+import net.fortuna.ical4j.util.MapTimeZoneCache;
+import net.sourceforge.cardme.vcard.exceptions.VCardBuildException;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.StreamingOutput;
 import java.io.IOException;
-import java.io.OutputStream;
 
 //http://www.adam-bien.com/roller/abien/entry/sending_and_receiving_streams_with
 //https://www.logicbig.com/tutorials/java-ee-tutorial/jax-rs/using-query-param.html
 //https://antoniogoncalves.org/2019/06/07/configuring-a-quarkus-application/
 
 
-
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2020-12-05T13:57:11.261Z")
-@Path("/normalOverDayDate")
-public class NormalOverDayDateSequenceHandler
+@Path("/vCard")
+public class VCardSequenceHandler
 {
-	private final de.elbosso.util.generator.generalpurpose.NormalOverDayDateSequence generator=new de.elbosso.util.generator.generalpurpose.NormalOverDayDateSequence();
+	private de.elbosso.util.generator.semantics.VCardSequence vCardSequence=new de.elbosso.util.generator.semantics.VCardSequence();
 
-    //java.util.Date
+    //java.lang.String
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response get(    @DefaultValue("1080")
-    @QueryParam("MueInMinutes")
-    double MueInMinutes,
-    @DefaultValue("180")
-    @QueryParam("SigmaInMinutes")
-    double SigmaInMinutes)
-    {
-        generator.setMueInMinutes(MueInMinutes);
-        generator.setSigmaInMinutes(SigmaInMinutes);
-        return Response.ok(new de.elbosso.microgenerator.date.DateResource(generator.next())).build();
+    @Produces("text/vcard")
+    public Response get() throws VCardBuildException
+	{
+        java.io.StringWriter sw=new java.io.StringWriter();
+		net.sourceforge.cardme.vcard.VCard vCard=vCardSequence.next();
+		java.io.PrintWriter pw=new java.io.PrintWriter(sw);
+		net.sourceforge.cardme.io.VCardWriter vcardWriter = new net.sourceforge.cardme.io.VCardWriter();
+		vcardWriter.setOutputVersion(net.sourceforge.cardme.vcard.arch.VCardVersion.V3_0);
+		vcardWriter.setFoldingScheme(net.sourceforge.cardme.io.FoldingScheme.MIME_DIR);
+		vcardWriter.setCompatibilityMode(net.sourceforge.cardme.io.CompatibilityMode.RFC2426);
+		vcardWriter.setBinaryfoldingScheme(net.sourceforge.cardme.io.BinaryFoldingScheme.MIME_DIR);
+		vcardWriter.setVCard(vCard);
+
+		String vcardString = vcardWriter.buildVCardString();
+		pw.println(vcardString);
+		pw.close();
+        return Response.ok(sw.toString()).build();
     }
-/*
-    @GET
-    @Produces("image/png")
-    public StreamingOutput hello(@QueryParam("dim") @DefaultValue("320") int dim)
-    {
-        return greeting(dim);
-    }
-    @GET
-    @Produces("image/png")
-    @Path("/{dim}")
-    public StreamingOutput greeting(@PathParam("dim") int dim) {
-        qrCodeImageSequence.setDimensionWidth(dim);
-        StreamingOutput rv= new StreamingOutput() {
-            @Override
-            public void write(OutputStream output)
-                    throws IOException, WebApplicationException
-            {
-                javax.imageio.ImageIO.write(qrCodeImageSequence.next(),"png",output);
-            }
-        };
-        return rv;
-    }
-*/
 }
 

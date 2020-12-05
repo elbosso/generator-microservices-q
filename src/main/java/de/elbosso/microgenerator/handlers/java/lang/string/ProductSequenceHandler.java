@@ -32,7 +32,7 @@ UNERLAUBTE HANDLUNG (INKLUSIVE FAHRLAESSIGKEIT) VERANTWORTLICH, AUF WELCHEM
 WEG SIE AUCH IMMER DURCH DIE BENUTZUNG DIESER SOFTWARE ENTSTANDEN SIND, SOGAR, 
 WENN SIE AUF DIE MOEGLICHKEIT EINES SOLCHEN SCHADENS HINGEWIESEN WORDEN SIND.
 */
-package de.elbosso.microgenerator.handlers.java.util.date;
+package de.elbosso.microgenerator.handlers.java.lang.string;
 
 import javax.ws.rs.*;
 import javax.ws.rs.GET;
@@ -50,25 +50,18 @@ import java.io.OutputStream;
 
 
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2020-12-05T13:57:11.261Z")
-@Path("/normalOverDayDate")
-public class NormalOverDayDateSequenceHandler
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2020-12-05T13:57:11.472Z")
+@Path("/product")
+public class ProductSequenceHandler
 {
-	private final de.elbosso.util.generator.generalpurpose.NormalOverDayDateSequence generator=new de.elbosso.util.generator.generalpurpose.NormalOverDayDateSequence();
+	private final de.elbosso.util.generator.semantics.ProductSequence generator=new de.elbosso.util.generator.semantics.ProductSequence();
 
-    //java.util.Date
+    //java.lang.String
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response get(    @DefaultValue("1080")
-    @QueryParam("MueInMinutes")
-    double MueInMinutes,
-    @DefaultValue("180")
-    @QueryParam("SigmaInMinutes")
-    double SigmaInMinutes)
+    public Response get()
     {
-        generator.setMueInMinutes(MueInMinutes);
-        generator.setSigmaInMinutes(SigmaInMinutes);
-        return Response.ok(new de.elbosso.microgenerator.date.DateResource(generator.next())).build();
+        return Response.ok(new de.elbosso.microgenerator.string.StringResource(generator.next())).build();
     }
 /*
     @GET
