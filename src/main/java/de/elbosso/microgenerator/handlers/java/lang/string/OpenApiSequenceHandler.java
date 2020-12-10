@@ -34,9 +34,11 @@ WENN SIE AUF DIE MOEGLICHKEIT EINES SOLCHEN SCHADENS HINGEWIESEN WORDEN SIND.
 */
 package de.elbosso.microgenerator.handlers.java.lang.string;
 
+import de.elbosso.util.generator.semantics.openapi.Config;
 import de.elbosso.util.generator.semantics.xml.Customizations;
 import de.elbosso.util.generator.semantics.xml.SchemaAnalyzer;
 import org.apache.xmlbeans.XmlException;
+import org.json.JSONException;
 import org.xml.sax.SAXException;
 
 import javax.ws.rs.*;
@@ -51,25 +53,31 @@ import java.util.Collections;
 //https://www.logicbig.com/tutorials/java-ee-tutorial/jax-rs/using-query-param.html
 //https://antoniogoncalves.org/2019/06/07/configuring-a-quarkus-application/
 
-@Path("/xmlFragment")
-public class XmlFragmentSequenceHandler
+@Path("/openApiFragment")
+public class OpenApiSequenceHandler
 {
     //java.lang.String
     @GET
-    @Produces("text/xml")
+    @Produces("application/json")
     public String get(
-			@DefaultValue("http://tecfa.unige.ch/guides/xml/examples/xsd-examples/recipe.xsd")
-	@QueryParam("Schema")
-	String schema,
-	@DefaultValue("list")
-	@QueryParam("RootElementName")
-	String rootElementName
-	) throws URISyntaxException, XmlException, SAXException, TransformerException, IOException
+			@DefaultValue("https://petstore3.swagger.io/api/v3/openapi.json")
+	@QueryParam("OpenApiSpec")
+	String openApiSpec
+	) throws URISyntaxException, JSONException, IOException
 	{
-		java.net.URI schemaUri=new java.net.URI(schema);
+		java.net.URI schemaUri=new java.net.URI(openApiSpec);
 		StringWriter writer = new StringWriter();
-		StreamResult result = new StreamResult(writer);
-		SchemaAnalyzer.generate(schemaUri,result,rootElementName, new Customizations(Collections.emptyMap(),Collections.EMPTY_MAP));
+		de.elbosso.util.generator.semantics.openapi.OpenApi openAPI = new de.elbosso.util.generator.semantics.openapi.OpenApi(Collections.EMPTY_MAP,new Config(),new java.net.URI(openApiSpec));
+		java.util.Collection<java.lang.String> schemaTypeNames=openAPI.getSchemaTypeNames();
+		java.io.PrintWriter pw=new java.io.PrintWriter(writer);
+		org.json.JSONObject obj=new org.json.JSONObject();
+		for(java.lang.String schemaTypeName:schemaTypeNames)
+		{
+			obj.put(schemaTypeName,openAPI.produceJson(schemaTypeName));
+		}
+		pw.println(obj.toString(2));
+		pw.close();
+
 		writer.close();
 		return writer.toString();
 	}
