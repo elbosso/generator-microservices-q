@@ -46,16 +46,6 @@
       <version>3.4.1</version>
     </dependency>
     <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-core</artifactId>
-      <version>2.9.4</version>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.10.0.pr1</version>
-    </dependency>
-    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
       <version>1.7.25</version>
@@ -68,13 +58,13 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>2.10.1</version>
+      <version>[2.10.1,)</version>
     </dependency>
     <!-- Failed to start quarkus java.lang.NoClassDefFoundError: com/fasterxml/jackson/core/exc/InputCoercionException -->
     <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-core</artifactId>
-        <version>2.10.1</version>
+        <version>[2.10.1,)</version>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -119,6 +109,24 @@
             <artifactId>cardme</artifactId>
             <version>0.4.0</version>
         </dependency>
+    <!-- https://mvnrepository.com/artifact/io.swagger.parser.v3/swagger-parser-v3 -->
+    <dependency>
+      <groupId>io.swagger.parser.v3</groupId>
+      <artifactId>swagger-parser-v3</artifactId>
+      <version>2.0.24</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.github.mifmif/generex -->
+    <dependency>
+      <groupId>com.github.mifmif</groupId>
+      <artifactId>generex</artifactId>
+      <version>1.0.1</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.xmlbeans/xmlbeans -->
+    <dependency>
+      <groupId>org.apache.xmlbeans</groupId>
+      <artifactId>xmlbeans</artifactId>
+      <version>2.6.0</version>
+    </dependency>
   </dependencies>
   <repositories>
     <repository>

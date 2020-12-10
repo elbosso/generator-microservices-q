@@ -34,50 +34,47 @@ WENN SIE AUF DIE MOEGLICHKEIT EINES SOLCHEN SCHADENS HINGEWIESEN WORDEN SIND.
 */
 package de.elbosso.microgenerator.handlers.java.lang.string;
 
-import net.fortuna.ical4j.util.MapTimeZoneCache;
-import net.sourceforge.cardme.vcard.exceptions.VCardBuildException;
+import de.elbosso.util.generator.semantics.xml.Customizations;
+import de.elbosso.util.generator.semantics.xml.SchemaAnalyzer;
+import org.apache.xmlbeans.XmlException;
+import org.xml.sax.SAXException;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.stream.StreamResult;
 import java.io.IOException;
+import java.io.StringWriter;
+import java.net.URISyntaxException;
+import java.util.Collections;
 
 //http://www.adam-bien.com/roller/abien/entry/sending_and_receiving_streams_with
 //https://www.logicbig.com/tutorials/java-ee-tutorial/jax-rs/using-query-param.html
 //https://antoniogoncalves.org/2019/06/07/configuring-a-quarkus-application/
 
 
-@Path("/vCard")
-public class VCardSequenceHandler
+@Path("/xmlFragment")
+public class XmlFragmentSequenceHandler
 {
 	private de.elbosso.util.generator.semantics.VCardSequence vCardSequence=new de.elbosso.util.generator.semantics.VCardSequence();
 
     //java.lang.String
     @GET
-    @Produces("text/vcard")
-    public Response get() throws VCardBuildException
+    @Produces("text/xml")
+    public String get(
+			@DefaultValue("http://tecfa.unige.ch/guides/xml/examples/xsd-examples/recipe.xsd")
+	@QueryParam("Schema")
+	String schema,
+	@DefaultValue("list")
+	@QueryParam("RootElementName")
+	String rootElementName
+	) throws URISyntaxException, XmlException, SAXException, TransformerException, IOException
 	{
-        java.io.StringWriter sw=new java.io.StringWriter();
-		while(true)
-		{
-			try
-			{
-				net.sourceforge.cardme.vcard.VCard vCard=vCardSequence.next();
-				java.io.PrintWriter pw=new java.io.PrintWriter(sw);
-				net.sourceforge.cardme.io.VCardWriter vcardWriter = new net.sourceforge.cardme.io.VCardWriter();
-				vcardWriter.setOutputVersion(net.sourceforge.cardme.vcard.arch.VCardVersion.V3_0);
-				vcardWriter.setFoldingScheme(net.sourceforge.cardme.io.FoldingScheme.MIME_DIR);
-				vcardWriter.setCompatibilityMode(net.sourceforge.cardme.io.CompatibilityMode.RFC2426);
-				vcardWriter.setBinaryfoldingScheme(net.sourceforge.cardme.io.BinaryFoldingScheme.MIME_DIR);
-				vcardWriter.setVCard(vCard);
-
-				String vcardString = vcardWriter.buildVCardString();
-				pw.println(vcardString);
-				pw.close();
-				break;
-			}
-			catch(Throwable t){t.printStackTrace();}
-		}
-        return Response.ok(sw.toString()).build();
-    }
+		java.net.URI schemaUri=new java.net.URI(schema);
+		StringWriter writer = new StringWriter();
+		StreamResult result = new StreamResult(writer);
+		SchemaAnalyzer.generate(schemaUri,result,rootElementName, new Customizations(Collections.emptyMap(),Collections.EMPTY_MAP));
+		writer.close();
+		return writer.toString();
+	}
 }
 
