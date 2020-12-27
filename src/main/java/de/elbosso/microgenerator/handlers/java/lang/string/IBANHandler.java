@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2012-2020.
+Copyright (c) 2012-2021.
 
 Juergen Key. Alle Rechte vorbehalten.
 
@@ -50,7 +50,7 @@ import java.io.OutputStream;
 
 
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2020-12-05T13:57:11.425Z")
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2020-12-27T11:21:27.38Z")
 @Path("/ibanNumber")
 public class IBANHandler
 {

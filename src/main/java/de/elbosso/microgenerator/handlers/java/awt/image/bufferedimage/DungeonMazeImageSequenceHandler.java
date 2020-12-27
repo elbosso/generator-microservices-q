@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2012-2020.
+Copyright (c) 2012-2021.
 
 Juergen Key. Alle Rechte vorbehalten.
 
@@ -50,7 +50,7 @@ import java.io.OutputStream;
 
 
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2020-12-05T13:57:11.371Z")
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2020-12-27T11:21:26.989Z")
 @Path("/dungeonMazeImg")
 public class DungeonMazeImageSequenceHandler
 {
@@ -65,9 +65,21 @@ public class DungeonMazeImageSequenceHandler
     @DefaultValue("8")
     @QueryParam("WidthSigma")
     int WidthSigma,
+    @DefaultValue("true")
+    @QueryParam("WithSolution")
+    boolean WithSolution,
+    @DefaultValue("false")
+    @QueryParam("ThinWalls")
+    boolean ThinWalls,
     @DefaultValue("30")
     @QueryParam("WidthMue")
     int WidthMue,
+    @DefaultValue("true")
+    @QueryParam("OnlyRectangularRooms")
+    boolean OnlyRectangularRooms,
+    @DefaultValue("true")
+    @QueryParam("AllowBackTrack")
+    boolean AllowBackTrack,
     @DefaultValue("5")
     @QueryParam("HeightSigma")
     int HeightSigma,
@@ -77,7 +89,11 @@ public class DungeonMazeImageSequenceHandler
     {
         generator.setHeightMue(HeightMue);
         generator.setWidthSigma(WidthSigma);
+        generator.setWithSolution(WithSolution);
+        generator.setThinWalls(ThinWalls);
         generator.setWidthMue(WidthMue);
+        generator.setOnlyRectangularRooms(OnlyRectangularRooms);
+        generator.setAllowBackTrack(AllowBackTrack);
         generator.setHeightSigma(HeightSigma);
         generator.setWithRooms(WithRooms);
         StreamingOutput rv= new StreamingOutput() {
