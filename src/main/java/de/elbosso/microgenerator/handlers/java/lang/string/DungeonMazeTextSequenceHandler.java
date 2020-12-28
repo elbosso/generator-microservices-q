@@ -50,17 +50,40 @@ import java.io.OutputStream;
 
 
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2020-12-28T13:17:01.345Z")
-@Path("/languageCode")
-public class RandomLanguageCodeSequenceHandler
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2020-12-28T13:17:01.236Z")
+@Path("/dungeonMazeText")
+public class DungeonMazeTextSequenceHandler
 {
-	private final de.elbosso.util.generator.semantics.RandomLanguageCodeSequence generator=new de.elbosso.util.generator.semantics.RandomLanguageCodeSequence();
+	private final de.elbosso.util.generator.semantics.DungeonMazeTextSequence generator=new de.elbosso.util.generator.semantics.DungeonMazeTextSequence();
 
     //java.lang.String
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response get()
+    public Response get(    @DefaultValue("15")
+    @QueryParam("HeightMue")
+    int HeightMue,
+    @DefaultValue("8")
+    @QueryParam("WidthSigma")
+    int WidthSigma,
+    @DefaultValue("false")
+    @QueryParam("TronMode")
+    boolean TronMode,
+    @DefaultValue("false")
+    @QueryParam("AnsiEscapes")
+    boolean AnsiEscapes,
+    @DefaultValue("50")
+    @QueryParam("WidthMue")
+    int WidthMue,
+    @DefaultValue("5")
+    @QueryParam("HeightSigma")
+    int HeightSigma)
     {
+        generator.setHeightMue(HeightMue);
+        generator.setWidthSigma(WidthSigma);
+        generator.setTronMode(TronMode);
+        generator.setAnsiEscapes(AnsiEscapes);
+        generator.setWidthMue(WidthMue);
+        generator.setHeightSigma(HeightSigma);
         return Response.ok(new de.elbosso.microgenerator.string.StringResource(generator.next())).build();
     }
 /*

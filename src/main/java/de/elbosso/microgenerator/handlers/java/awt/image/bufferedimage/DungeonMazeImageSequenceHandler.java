@@ -50,7 +50,7 @@ import java.io.OutputStream;
 
 
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2020-12-27T11:21:26.989Z")
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2020-12-28T13:17:01.183Z")
 @Path("/dungeonMazeImg")
 public class DungeonMazeImageSequenceHandler
 {
@@ -62,6 +62,9 @@ public class DungeonMazeImageSequenceHandler
     public StreamingOutput get(    @DefaultValue("20")
     @QueryParam("HeightMue")
     int HeightMue,
+    @DefaultValue("false")
+    @QueryParam("RemoveWallsWhenErasingCulDeSacs")
+    boolean RemoveWallsWhenErasingCulDeSacs,
     @DefaultValue("8")
     @QueryParam("WidthSigma")
     int WidthSigma,
@@ -88,6 +91,7 @@ public class DungeonMazeImageSequenceHandler
     boolean WithRooms)
     {
         generator.setHeightMue(HeightMue);
+        generator.setRemoveWallsWhenErasingCulDeSacs(RemoveWallsWhenErasingCulDeSacs);
         generator.setWidthSigma(WidthSigma);
         generator.setWithSolution(WithSolution);
         generator.setThinWalls(ThinWalls);
