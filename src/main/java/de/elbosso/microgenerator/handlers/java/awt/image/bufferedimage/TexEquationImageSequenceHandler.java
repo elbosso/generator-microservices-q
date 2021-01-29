@@ -50,24 +50,17 @@ import java.io.OutputStream;
 
 
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2021-01-29T15:07:37.344Z")
-@Path("/testPatternImg")
-public class ConstantTestPatternImageSequenceHandler
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2021-01-29T15:07:37.728Z")
+@Path("/texEquationImg")
+public class TexEquationImageSequenceHandler
 {
-	private final de.elbosso.util.generator.generalpurpose.ConstantTestPatternImageSequence generator=new de.elbosso.util.generator.generalpurpose.ConstantTestPatternImageSequence();
+	private final de.elbosso.util.generator.semantics.TexEquationImageSequence generator=new de.elbosso.util.generator.semantics.TexEquationImageSequence();
 
     //java.awt.image.BufferedImage
     @GET
     @Produces("image/png")
-    public StreamingOutput get(    @DefaultValue("256")
-    @QueryParam("Height")
-    int Height,
-    @DefaultValue("320")
-    @QueryParam("Width")
-    int Width)
+    public StreamingOutput get()
     {
-        generator.setHeight(Height);
-        generator.setWidth(Width);
         StreamingOutput rv= new StreamingOutput() {
             @Override
             public void write(OutputStream output)

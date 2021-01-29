@@ -50,24 +50,28 @@ import java.io.OutputStream;
 
 
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2021-01-29T15:07:37.344Z")
-@Path("/testPatternImg")
-public class ConstantTestPatternImageSequenceHandler
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2021-01-29T15:07:37.471Z")
+@Path("/tunnelImg")
+public class TunnelImageSequenceHandler
 {
-	private final de.elbosso.util.generator.generalpurpose.ConstantTestPatternImageSequence generator=new de.elbosso.util.generator.generalpurpose.ConstantTestPatternImageSequence();
+	private final de.elbosso.util.generator.generalpurpose.TunnelImageSequence generator=new de.elbosso.util.generator.generalpurpose.TunnelImageSequence();
 
     //java.awt.image.BufferedImage
     @GET
     @Produces("image/png")
-    public StreamingOutput get(    @DefaultValue("256")
-    @QueryParam("Height")
-    int Height,
-    @DefaultValue("320")
-    @QueryParam("Width")
-    int Width)
+    public StreamingOutput get(    @DefaultValue("0")
+    @QueryParam("Mode")
+    int Mode,
+    @DefaultValue("80")
+    @QueryParam("ShapeCount")
+    int ShapeCount,
+    @DefaultValue("512")
+    @QueryParam("Dimension")
+    int Dimension)
     {
-        generator.setHeight(Height);
-        generator.setWidth(Width);
+        generator.setMode(Mode);
+        generator.setShapeCount(ShapeCount);
+        generator.setDimension(Dimension);
         StreamingOutput rv= new StreamingOutput() {
             @Override
             public void write(OutputStream output)

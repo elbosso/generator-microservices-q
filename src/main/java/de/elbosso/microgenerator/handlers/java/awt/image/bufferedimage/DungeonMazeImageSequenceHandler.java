@@ -50,7 +50,7 @@ import java.io.OutputStream;
 
 
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2020-12-28T13:17:01.183Z")
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2021-01-29T15:07:37.538Z")
 @Path("/dungeonMazeImg")
 public class DungeonMazeImageSequenceHandler
 {
@@ -74,6 +74,9 @@ public class DungeonMazeImageSequenceHandler
     @DefaultValue("false")
     @QueryParam("ThinWalls")
     boolean ThinWalls,
+    @DefaultValue("false")
+    @QueryParam("EllipticShape")
+    boolean EllipticShape,
     @DefaultValue("30")
     @QueryParam("WidthMue")
     int WidthMue,
@@ -95,6 +98,7 @@ public class DungeonMazeImageSequenceHandler
         generator.setWidthSigma(WidthSigma);
         generator.setWithSolution(WithSolution);
         generator.setThinWalls(ThinWalls);
+        generator.setEllipticShape(EllipticShape);
         generator.setWidthMue(WidthMue);
         generator.setOnlyRectangularRooms(OnlyRectangularRooms);
         generator.setAllowBackTrack(AllowBackTrack);

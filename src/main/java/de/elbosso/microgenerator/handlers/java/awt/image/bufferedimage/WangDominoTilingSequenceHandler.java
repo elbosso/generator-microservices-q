@@ -50,24 +50,32 @@ import java.io.OutputStream;
 
 
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2021-01-29T15:07:37.344Z")
-@Path("/testPatternImg")
-public class ConstantTestPatternImageSequenceHandler
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2021-01-29T15:07:37.478Z")
+@Path("/wangDominoTilingImg")
+public class WangDominoTilingSequenceHandler
 {
-	private final de.elbosso.util.generator.generalpurpose.ConstantTestPatternImageSequence generator=new de.elbosso.util.generator.generalpurpose.ConstantTestPatternImageSequence();
+	private final de.elbosso.util.generator.generalpurpose.WangDominoTilingSequence generator=new de.elbosso.util.generator.generalpurpose.WangDominoTilingSequence();
 
     //java.awt.image.BufferedImage
     @GET
     @Produces("image/png")
-    public StreamingOutput get(    @DefaultValue("256")
-    @QueryParam("Height")
-    int Height,
-    @DefaultValue("320")
-    @QueryParam("Width")
-    int Width)
+    public StreamingOutput get(    @DefaultValue("8")
+    @QueryParam("DimensionWidth")
+    int DimensionWidth,
+    @DefaultValue("true")
+    @QueryParam("PreferHomogenousRegions")
+    boolean PreferHomogenousRegions,
+    @DefaultValue("6")
+    @QueryParam("DimensionHeight")
+    int DimensionHeight,
+    @DefaultValue("128")
+    @QueryParam("Tilesize")
+    int Tilesize)
     {
-        generator.setHeight(Height);
-        generator.setWidth(Width);
+        generator.setDimensionWidth(DimensionWidth);
+        generator.setPreferHomogenousRegions(PreferHomogenousRegions);
+        generator.setDimensionHeight(DimensionHeight);
+        generator.setTilesize(Tilesize);
         StreamingOutput rv= new StreamingOutput() {
             @Override
             public void write(OutputStream output)

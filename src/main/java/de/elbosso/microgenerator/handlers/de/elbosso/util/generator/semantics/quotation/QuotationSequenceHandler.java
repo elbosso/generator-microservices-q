@@ -32,7 +32,7 @@ UNERLAUBTE HANDLUNG (INKLUSIVE FAHRLAESSIGKEIT) VERANTWORTLICH, AUF WELCHEM
 WEG SIE AUCH IMMER DURCH DIE BENUTZUNG DIESER SOFTWARE ENTSTANDEN SIND, SOGAR, 
 WENN SIE AUF DIE MOEGLICHKEIT EINES SOLCHEN SCHADENS HINGEWIESEN WORDEN SIND.
 */
-package de.elbosso.microgenerator.handlers.java.awt.image.bufferedimage;
+package de.elbosso.microgenerator.handlers.de.elbosso.util.generator.semantics.quotation;
 
 import javax.ws.rs.*;
 import javax.ws.rs.GET;
@@ -50,33 +50,18 @@ import java.io.OutputStream;
 
 
 
-@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2021-01-29T15:07:37.344Z")
-@Path("/testPatternImg")
-public class ConstantTestPatternImageSequenceHandler
+@javax.annotation.Generated(value="de.elbosso.util.processors.GeneratorRestHandlerProcessor", date="2021-01-29T15:07:37.666Z")
+@Path("/quotation")
+public class QuotationSequenceHandler
 {
-	private final de.elbosso.util.generator.generalpurpose.ConstantTestPatternImageSequence generator=new de.elbosso.util.generator.generalpurpose.ConstantTestPatternImageSequence();
+	private final de.elbosso.util.generator.semantics.QuotationSequence generator=new de.elbosso.util.generator.semantics.QuotationSequence();
 
-    //java.awt.image.BufferedImage
+    //de.elbosso.util.generator.semantics.Quotation
     @GET
-    @Produces("image/png")
-    public StreamingOutput get(    @DefaultValue("256")
-    @QueryParam("Height")
-    int Height,
-    @DefaultValue("320")
-    @QueryParam("Width")
-    int Width)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response get()
     {
-        generator.setHeight(Height);
-        generator.setWidth(Width);
-        StreamingOutput rv= new StreamingOutput() {
-            @Override
-            public void write(OutputStream output)
-                    throws IOException, WebApplicationException
-            {
-                javax.imageio.ImageIO.write(generator.next(),"png",output);
-            }
-        };
-        return rv;
+        return Response.ok(generator.next()).build();
     }
 /*
     @GET
