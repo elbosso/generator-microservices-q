@@ -13,8 +13,14 @@ services:
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
+      - "traefik.http.routers.generator-microservices-q-http.entrypoints=http"
+      - "traefik.http.routers.generator-microservices-q-http.rule=Host(`generator-microservices-q.pi-docker.lab`)"
+      - "traefik.http.routers.generator-microservices-q-http.middlewares=generator-microservices-q-https"
+      - "traefik.http.services.generator-microservices-q-http.loadbalancer.server.port=8080"
+      - "traefik.http.middlewares.generator-microservices-q-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.generator-microservices-q.entrypoints=https"
       - "traefik.http.routers.generator-microservices-q.rule=Host(`generator-microservices-q.pi-docker.lab`)"
-      - "traefik.http.services.generator-microservices-q.loadbalancer.server.port=8080"
+      - "traefik.http.routers.generator-microservices-q.tls=true"
       - "traefik.docker.network=pi_traefik_proxy"
     networks:
       - traefik_proxy
